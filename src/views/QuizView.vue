@@ -15,6 +15,12 @@ const quiz = quizes.find((q) => q.id === quizId);
 const status = computed(() => {
   return `${currentQuestion.value}/${quiz.questions.length}`;
 });
+
+const clickNext = (event) => {
+  if (currentQuestion.value <= quiz.questions.length - 1) {
+    currentQuestion.value++;
+  }
+};
 </script>
 
 <template>
@@ -22,7 +28,7 @@ const status = computed(() => {
     <Header :status="status" />
     <Question :question="quiz.questions[currentQuestion]" />
     <Option :question="quiz.questions[currentQuestion]" />
-    <button @click="currentQuestion++">Next question</button>
+    <button @click="clickNext">Next question</button>
   </div>
 </template>
 
